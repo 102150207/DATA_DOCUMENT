@@ -24,7 +24,7 @@ CREATE TABLE [dbo].[User] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  FK_User PRIMARY KEY (Id)
+	CONSTRAINT  PK_User PRIMARY KEY (Id)
 )
 
 --------------------- [dbo].[Role] TABLE ---------------------------------
@@ -37,7 +37,7 @@ CREATE TABLE [dbo].[Role] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  FK_Role PRIMARY KEY (Id)
+	CONSTRAINT  PK_Role PRIMARY KEY (Id)
 )
 
 --------------------- [dbo].[User_Role] TABLE ------------------------------
@@ -76,7 +76,7 @@ CREATE TABLE [dbo].[Degree] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  FK_Degree PRIMARY KEY (Id)
+	CONSTRAINT  PK_Degree PRIMARY KEY (Id)
 )
 --------------------- [dbo].[User_Degree] TABLE -----------------------------
 CREATE TABLE [dbo].[User_Degree] (
@@ -104,7 +104,7 @@ CREATE TABLE [dbo].[Faculty] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  FK_Faculty PRIMARY KEY (Id)
+	CONSTRAINT  PK_Faculty PRIMARY KEY (Id)
 )
 --------------------- [dbo].[User_Faculty] TABLE -------------------------------
 CREATE TABLE [dbo].[User_Faculty] (
@@ -133,7 +133,7 @@ CREATE TABLE [dbo].[Clinic] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  FK_Clinic PRIMARY KEY (Id)
+	CONSTRAINT  PK_Clinic PRIMARY KEY (Id)
 )
 --------------------- [dbo].[User_Clinic] TABLE -------------------------------
 CREATE TABLE [dbo].[User_Clinic] (
