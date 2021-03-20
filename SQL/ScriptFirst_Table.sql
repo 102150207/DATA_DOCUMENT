@@ -24,7 +24,7 @@ CREATE TABLE [dbo].[User] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  PK_User PRIMARY KEY (Id)
+	CONSTRAINT  FK_User PRIMARY KEY (Id)
 )
 
 --------------------- [dbo].[Role] TABLE ---------------------------------
@@ -37,7 +37,7 @@ CREATE TABLE [dbo].[Role] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  PK_Role PRIMARY KEY (Id)
+	CONSTRAINT  FK_Role PRIMARY KEY (Id)
 )
 
 --------------------- [dbo].[User_Role] TABLE ------------------------------
@@ -51,21 +51,21 @@ CREATE TABLE [dbo].[User_Role] (
 	Created_By UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By UNIQUEIDENTIFIER NOT NULL,
 	Updated_By UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT PK_User_Role_User FOREIGN KEY (Id_User) REFERENCES [dbo].[User](Id), -- ADD CONSTRAINT PK_User_Role_User FOR FOREIGN KEY
+	CONSTRAINT FK_User_Role_User FOREIGN KEY (Id_User) REFERENCES [dbo].[User](Id), -- ADD CONSTRAINT PK_User_Role_User FOR FOREIGN KEY
 	--FOREIGN KEY (Id_User) REFERENCES [dbo].[User](Id), -------  WAY 2 TO CREATE FOREIGN KEY
-	CONSTRAINT PK_User_Role_Role FOREIGN KEY (Id_Role) REFERENCES [dbo].[Role] (Id), 
+	CONSTRAINT FK_User_Role_Role FOREIGN KEY (Id_Role) REFERENCES [dbo].[Role] (Id), 
 	--FOREIGN KEY (Id_Role) REFERENCES [dbo].[Role] (Id),
 	CONSTRAINT PK_User_Role PRIMARY KEY (Id)
 )
 ----------------------- WAY 3 TO CREATE FOREIGN KEY ----------------------------------
 --ALTER TABLE  [dbo].[User_Role]
---ADD CONSTRAINT PK_User_Role_User FOREIGN KEY (Id_User) REFERENCES [dbo].[User](Id);
+--ADD CONSTRAINT FK_User_Role_User FOREIGN KEY (Id_User) REFERENCES [dbo].[User](Id);
 
 --ALTER TABLE [dbo].[User_Role]
---ADD CONSTRAINT PK_User_Role_Role FOREIGN KEY (Id_Role) REFERENCES  [dbo].[Role] (Id);
+--ADD CONSTRAINT FK_User_Role_Role FOREIGN KEY (Id_Role) REFERENCES  [dbo].[Role] (Id);
 --------------------- WAY TO DROP CONSTRAINT FOR FOREIGN KEY -------------------------
 -- ALTER TABLE [dbo].[User_Role]
--- DROP CONSTRAINT PK_User_Role_Role
+-- DROP CONSTRAINT FK_User_Role_Role
 --------------------- [dbo].[Degree] TABLE ---------------------------------
 CREATE TABLE [dbo].[Degree] (
 	Id			UNIQUEIDENTIFIER NOT NULL,
@@ -76,7 +76,7 @@ CREATE TABLE [dbo].[Degree] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  PK_Degree PRIMARY KEY (Id)
+	CONSTRAINT  FK_Degree PRIMARY KEY (Id)
 )
 --------------------- [dbo].[User_Degree] TABLE -----------------------------
 CREATE TABLE [dbo].[User_Degree] (
@@ -89,8 +89,8 @@ CREATE TABLE [dbo].[User_Degree] (
 	Created_By UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By UNIQUEIDENTIFIER NOT NULL,
 	Updated_By UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT PK_User_Degree_User   FOREIGN KEY (Id_User) REFERENCES [dbo].[User](Id),
-	CONSTRAINT PK_User_Degree_Degree FOREIGN KEY (Id_Degree) REFERENCES [dbo].[Degree](Id),
+	CONSTRAINT FK_User_Degree_User   FOREIGN KEY (Id_User)   REFERENCES [dbo].[User](Id),
+	CONSTRAINT FK_User_Degree_Degree FOREIGN KEY (Id_Degree) REFERENCES [dbo].[Degree](Id),
 	CONSTRAINT PK_User_Degree PRIMARY KEY (Id)
 )
 
@@ -104,7 +104,7 @@ CREATE TABLE [dbo].[Faculty] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  PK_Faculty PRIMARY KEY (Id)
+	CONSTRAINT  FK_Faculty PRIMARY KEY (Id)
 )
 --------------------- [dbo].[User_Faculty] TABLE -------------------------------
 CREATE TABLE [dbo].[User_Faculty] (
@@ -117,8 +117,8 @@ CREATE TABLE [dbo].[User_Faculty] (
 	Created_By UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By UNIQUEIDENTIFIER NOT NULL,
 	Updated_By UNIQUEIDENTIFIER NOT NULL
-	CONSTRAINT PK_User_Faculty_User    FOREIGN KEY (Id_User) REFERENCES [dbo].[User](Id),
-	CONSTRAINT PK_User_Faculty_Faculty FOREIGN KEY (Id_Faculty) REFERENCES [dbo].[Faculty](Id),
+	CONSTRAINT FK_User_Faculty_User    FOREIGN KEY (Id_User)    REFERENCES [dbo].[User](Id),
+	CONSTRAINT FK_User_Faculty_Faculty FOREIGN KEY (Id_Faculty) REFERENCES [dbo].[Faculty](Id),
 	CONSTRAINT PK_User_Faculty PRIMARY KEY (Id)
 )
 
@@ -133,7 +133,7 @@ CREATE TABLE [dbo].[Clinic] (
 	Created_By  UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By  UNIQUEIDENTIFIER NOT NULL,
 	Updated_By  UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  PK_Clinic PRIMARY KEY (Id)
+	CONSTRAINT  FK_Clinic PRIMARY KEY (Id)
 )
 --------------------- [dbo].[User_Clinic] TABLE -------------------------------
 CREATE TABLE [dbo].[User_Clinic] (
@@ -146,8 +146,8 @@ CREATE TABLE [dbo].[User_Clinic] (
 	Created_By UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By UNIQUEIDENTIFIER NOT NULL,
 	Updated_By UNIQUEIDENTIFIER NOT NULL
-	CONSTRAINT PK_User_Clinic_User FOREIGN KEY (Id_User)  REFERENCES [dbo].[User](Id),
-	CONSTRAINT PK_User_Clinic_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
+	CONSTRAINT FK_User_Clinic_User FOREIGN KEY (Id_User)     REFERENCES [dbo].[User](Id),
+	CONSTRAINT FK_User_Clinic_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
 	CONSTRAINT PK_User_Clinic PRIMARY KEY (Id)
 )
 
@@ -162,8 +162,8 @@ CREATE TABLE [dbo].[Clinic_Faculty] (
 	Created_By UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By UNIQUEIDENTIFIER NOT NULL,
 	Updated_By UNIQUEIDENTIFIER NOT NULL
-	CONSTRAINT PK_Clinic_Faculty_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
-	CONSTRAINT PK_Clinic_Faculty_Faculty FOREIGN KEY (Id_Faculty) REFERENCES [dbo].[Faculty](Id),
+	CONSTRAINT FK_Clinic_Faculty_Clinic FOREIGN KEY (Id_Clinic)   REFERENCES [dbo].[Clinic](Id),
+	CONSTRAINT FK_Clinic_Faculty_Faculty FOREIGN KEY (Id_Faculty) REFERENCES [dbo].[Faculty](Id),
 	CONSTRAINT PK_Clinic_Faculty PRIMARY KEY (Id)
 )
 --------------------- [dbo].[Price] TABLE -------------------------------
@@ -178,7 +178,7 @@ CREATE TABLE [dbo].[Price] (
 	Created_By	UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By	UNIQUEIDENTIFIER NOT NULL,
 	Updated_By	UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  PK_Price_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
+	CONSTRAINT  FK_Price_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
 	CONSTRAINT  PK_Price PRIMARY KEY (Id)
 )
 --------------------- [dbo].[Booking] TABLE -------------------------------
@@ -203,9 +203,9 @@ CREATE TABLE [dbo].[Booking](
 	Created_By			 UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By			 UNIQUEIDENTIFIER NOT NULL,
 	Updated_By			 UNIQUEIDENTIFIER NOT NULL
-	CONSTRAINT PK_Booking_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
-	CONSTRAINT PK_Booking_User   FOREIGN KEY (Id_User)   REFERENCES [dbo].[User](Id),
-	CONSTRAINT PK_Booking_Expert FOREIGN KEY (Id_Expert) REFERENCES [dbo].[User](Id),
+	CONSTRAINT FK_Booking_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
+	CONSTRAINT FK_Booking_User   FOREIGN KEY (Id_User)   REFERENCES [dbo].[User](Id),
+	CONSTRAINT FK_Booking_Expert FOREIGN KEY (Id_Expert) REFERENCES [dbo].[User](Id),
 	CONSTRAINT PK_Booking PRIMARY KEY (Id)
 )
 --------------------- [dbo].[Rate] TABLE -------------------------------
@@ -221,9 +221,9 @@ CREATE TABLE [dbo].[Rate] (
 	Created_By	UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By	UNIQUEIDENTIFIER NOT NULL,
 	Updated_By	UNIQUEIDENTIFIER NOT NULL
-	CONSTRAINT  PK_Rate_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
-	CONSTRAINT  PK_Rate_User   FOREIGN KEY (Id_User)   REFERENCES [dbo].[User](Id),
-	CONSTRAINT  PK_Rate_Expert FOREIGN KEY (Id_Expert) REFERENCES [dbo].[User](Id),
+	CONSTRAINT  FK_Rate_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
+	CONSTRAINT  FK_Rate_User   FOREIGN KEY (Id_User)   REFERENCES [dbo].[User](Id),
+	CONSTRAINT  FK_Rate_Expert FOREIGN KEY (Id_Expert) REFERENCES [dbo].[User](Id),
 	CONSTRAINT  PK_Rate PRIMARY KEY (Id)
 )
 --------------------- [dbo].[Comment] TABLE -------------------------------
@@ -239,9 +239,9 @@ CREATE TABLE [dbo].[Comment] (
 	Created_By	UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By	UNIQUEIDENTIFIER NOT NULL,
 	Updated_By	UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT  PK_Comment_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
-	CONSTRAINT  PK_Comment_User   FOREIGN KEY (Id_User)   REFERENCES [dbo].[User](Id),
-	CONSTRAINT  PK_Comment_Expert FOREIGN KEY (Id_Expert) REFERENCES [dbo].[User](Id),
+	CONSTRAINT  FK_Comment_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
+	CONSTRAINT  FK_Comment_User   FOREIGN KEY (Id_User)   REFERENCES [dbo].[User](Id),
+	CONSTRAINT  FK_Comment_Expert FOREIGN KEY (Id_Expert) REFERENCES [dbo].[User](Id),
 	CONSTRAINT  PK_Comment PRIMARY KEY (Id)
 )
 --------------------- [dbo].[Post_Type] TABLE -------------------------------
@@ -269,8 +269,8 @@ CREATE TABLE [dbo].[Post] (
 	Created_By	UNIQUEIDENTIFIER NOT NULL,
 	Deleted_By	UNIQUEIDENTIFIER NOT NULL,
 	Updated_By	UNIQUEIDENTIFIER NOT NULL,
-	CONSTRAINT PK_Post_Clinic FOREIGN KEY (Id_Clinic) REFERENCES [dbo].[Clinic](Id),
-	CONSTRAINT PK_Post_User   FOREIGN KEY (Id_User)   REFERENCES [dbo].[User](Id),
-	CONSTRAINT PK_Post_Post_Type FOREIGN KEY (Id_PostType) REFERENCES [dbo].[Post_Type](Id),
+	CONSTRAINT  FK_Post_Clinic    FOREIGN KEY (Id_Clinic)   REFERENCES [dbo].[Clinic](Id),
+	CONSTRAINT  FK_Post_User      FOREIGN KEY (Id_User)     REFERENCES [dbo].[User](Id),
+	CONSTRAINT  FK_Post_Post_Type FOREIGN KEY (Id_PostType) REFERENCES [dbo].[Post_Type](Id),
 	CONSTRAINT  PK_Post PRIMARY KEY (Id)
 )
