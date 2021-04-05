@@ -163,7 +163,7 @@
 	ORDER BY
 		 t.name, col.name, ind.name
 ---- WAY: SQL SERVER – How to Disable and Enable All Constraint for Table and Database
-
+-----https://blog.sqlauthority.com/2014/12/02/sql-server-how-to-disable-and-enable-all-constraint-for-table-and-database/
 	-- Disable all table constraints
 	ALTER TABLE YourTableName NOCHECK CONSTRAINT ALL
 	-- Enable all table constraints
