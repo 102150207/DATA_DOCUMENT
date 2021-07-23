@@ -179,7 +179,7 @@
 	-- Enable all constraints for database
 	EXEC sp_msforeachtable "ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all"
 	
-	-- Creating a date dimension or calendar table in SQL Server
+	-- Creating a date dimension or calendar table in SQL Server https://www.mssqltips.com/sqlservertip/4054/creating-a-date-dimension-or-calendar-table-in-sql-server/
 	DECLARE @StartDate  date = '20100101';
 
 	DECLARE @CutoffDate date = DATEADD(DAY, -1, DATEADD(YEAR, 30, @StartDate));
