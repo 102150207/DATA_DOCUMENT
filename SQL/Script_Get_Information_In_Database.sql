@@ -230,8 +230,40 @@
 	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 	) ON [PRIMARY] 
 	GO
-	
-	
+	// Create table date key
+	CREATE TABLE [dbo].[DateKey](
+		[DateKey] [int] NOT NULL,
+		[Date] [date] NOT NULL,
+		[EnglishDayNameOfWeek] [varchar](10) NULL,
+		[MonthName] [varchar](10) NULL,
+		[DayNumberOfWeek] [tinyint] NULL,
+		[DayNumberOfMonth] [tinyint] NULL,
+		[DayNumberOfYear] [smallint] NULL,
+		[WeekNumberOfYear] [tinyint] NULL,
+		[Month] [tinyint] NULL,
+		[Quater] [tinyint] NULL,
+		[Year] [smallint] NULL,
+		[DateString] [varchar](20) NULL,
+	 CONSTRAINT [PK_Date] PRIMARY KEY CLUSTERED 
+	(
+		[DateKey] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
+	// Create table time key
+	CREATE TABLE [dbo].[TimeKey](
+		[TimeKey] [int] NOT NULL,
+		[Time] [time](7) NOT NULL,
+		[Hour] [tinyint] NULL,
+		[Minute] [tinyint] NULL,
+		[Second] [tinyint] NULL,
+		[TimeString] [varchar](20) NULL,
+	 CONSTRAINT [PK_Time] PRIMARY KEY CLUSTERED 
+	(
+		[TimeKey] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY]
+	GO
 	
 	
 	
