@@ -214,6 +214,22 @@
 	SELECT * FROM src
 	  ORDER BY TheDate
 	  OPTION (MAXRECURSION 0);
+	  
+	// Convert datetime to datetime key
+	CREATE TABLE [dbo].[Table](
+		[Id] [int] NOT NULL,
+		[Name] [nvarchar](45) NULL,
+		[Description] [nvarchar](max) NULL,
+		[CreatedDate] [datetime2](7) NULL,
+		[UpdatedDate] [datetime2](7) NULL,
+		[CreatedDateKey]  AS (CONVERT([int],CONVERT([char](8),dateadd(hour,(8),[CreatedDate]),(112)))),
+		[UpdatedDateKey]  AS (CONVERT([int],CONVERT([char](8),dateadd(hour,(8),[UpdatedDate]),(112)))),
+	 CONSTRAINT [PK__csl_Grou__3214EC07DC4D3175] PRIMARY KEY CLUSTERED 
+	(
+		[Id] ASC
+	)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+	) ON [PRIMARY] 
+	GO
 	
 	
 	
